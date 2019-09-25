@@ -7,7 +7,7 @@ export const environment = {
   firebase: {
     apiKey: "AIzaSyAIS5Ntqyu_W1AQpt1hGAQgWkT6vqKFiHs",
     authDomain: "the-cooking-book.firebaseapp.com",
-    databaseURL: "https://platzinger-basico.firebaseio.com",
+    databaseURL: "https://the-cooking-book.firebaseio.com",
     projectId: "the-cooking-book",
     storageBucket: "platzinger-basico.appspot.com",
     //messagingSenderId: "185631691397"

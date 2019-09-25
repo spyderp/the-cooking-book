@@ -19,7 +19,7 @@ export class AuthenticationService {
   loginWithTwitter() {
     return this.angularFireAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
   }
-  registerWith(email: string, password: string) {
+  registerWithEmail(email: string, password: string) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password);
   }
   getStatus() {
