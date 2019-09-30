@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Creando una Nueva Receta</ion-title>
+    <ion-buttons slot="end">
+        <ion-button [routerLink]="['/main']"><ion-icon name="close" ></ion-icon></ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>
+<ion-footer>
+<div style="display: inline-block; width: 50%">
+  <ion-button expand="full" color="success" (click)="save()" > Guardar </ion-button>
+</div>
+<div style="display: inline-block; width: 50%">
+  <ion-button expand="full" color="secondary" [routerLink]="['/recipe2']" > Siguiente</ion-button>
+</div>
+</ion-footer>

@@ -1,6 +1,7 @@
 <ion-grid>
   <ion-row>
     <ion-col class="app-logo ion-text-center">
+      <img src="/assets/icon/chef-hat.svg" alt=""><br>
      The Cooking Book
     </ion-col>
   </ion-row>
@@ -14,24 +15,24 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-input placeholder="Ingrese email" type="email" [(ngModel)]="email" color="light" required ></ion-input>
+          <ion-input placeholder="Ingrese su correo" type="email" [(ngModel)]="email"  required ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input placeholder="Ingrese contraseña" type="password" [(ngModel)]="password" color="light" required></ion-input>
+          <ion-input placeholder="Ingrese su contraseña" type="password" [(ngModel)]="password"  required></ion-input>
         </ion-item>
         <ion-item *ngIf="operation=='register'">
-          <ion-input  placeholder="Ingrese nick" type="text" [(ngModel)]="nick" color="light" required></ion-input>
+          <ion-input  placeholder="Ingrese nick" type="text" [(ngModel)]="nick" required></ion-input>
         </ion-item>
         
       </ion-col>
     </ion-row>
     <ion-row >
       <ion-col >
-        <ion-button *ngIf="operation=='login'" color="light" expand="block" (click)="loginWithEmail()"> 
+        <ion-button *ngIf="operation=='login'" expand="block" (click)="loginWithEmail()"> 
           <img src="/assets/icon/email-icon.svg" alt="icono de google" width="24" class="ion-margin-end" >  
           Acceder por Correo
         </ion-button>
-        <ion-button  *ngIf="operation=='register'" color="light" expand="block" (click)="register()"> 
+        <ion-button  *ngIf="operation=='register'"  expand="block" (click)="register()"> 
             <img src="/assets/icon/email-icon.svg" alt="icono de google" width="24" class="ion-margin-end" >  
             Registrar
           </ion-button>
@@ -39,7 +40,7 @@
     </ion-row>
     <ion-row>
         <ion-col >
-          <ion-button color="light" expand="block" (click)="loginWithGoogle()"> 
+          <ion-button  expand="block" (click)="loginWithGoogle()"> 
             <img src="/assets/icon/google-icon.svg" alt="icono de google" width="24" class="ion-margin-end" >  
             Acceder por Google
           </ion-button>
@@ -47,7 +48,7 @@
       </ion-row>
       <ion-row>
         <ion-col >
-          <ion-button color="light" expand="block" (click)="loginWithTwitter()"> 
+          <ion-button  expand="block" (click)="loginWithTwitter()"> 
             <img src="/assets/icon/twitter-icon.svg" alt="icono de google" width="24" class="ion-margin-end" >  
             Acceder por Twitter
           </ion-button>

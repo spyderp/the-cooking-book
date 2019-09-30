@@ -1,10 +1,25 @@
+:root{
+    --ion-background-color: #f1f1ed;
+}
 .app-logo{
-    margin-top: 8rem;
-    color: #fff;
+    font: 34px 'Satisfy', cursive ; 
+    color: #d72608;
+    margin-top: 2rem;
 }
 .text-info{
-    color: #fff;
     a{
-        color: #ffce00;
+        color: --ion-color-tertiary;
     }
+}
+
+ion-grid{
+    background: #d3e4e9;
+    padding: 0 1rem;
+    margin: 8%  auto;
+    > ion-grid{
+        margin: 0 auto;
+    }
+}
+ion-item{
+    --background: #d3e4e9;
 }

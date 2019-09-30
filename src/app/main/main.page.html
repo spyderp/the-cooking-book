@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>main</ion-title>
+    <ion-searchbar placeholder="Buscar"  (ionInput)="filterRecipes($event)" (ionClear)="filterClear($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <ion-list>
+    <ion-item-sliding *ngFor="let recipe of recipes">
+      <ion-item (click)="viewRecipe(recipe.uid)">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <img class="imgRecepie" [src]="recipe.picture.length > 0?'/assets/favicon.png':'/assets/icon/tenedorycuchillo.svg'" alt="imagen de receta">
+            </ion-col>
+            <ion-col size="8">
+              <ion-text color="tertiary">
+                  <h5 class="ion-text-capitalize" > {{ recipe.title }}</h5>
+              </ion-text>
+              <span class="timeText" > {{recipe.time}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option (click)="edit(recipe.uid)" color="success">
+          <ion-icon name="create"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item-options side="end">
+        <ion-item-option (click)="delete(recipe.uid)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>  
+  </ion-list>
 </ion-content>
+<ion-footer>
+    <ion-button expand="full" color="success" [routerLink]="['/recipe1']" > Nueva Receta </ion-button>
+</ion-footer>  

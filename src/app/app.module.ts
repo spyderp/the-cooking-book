@@ -17,8 +17,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
+import { ViewPipe } from './view.pipe';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ViewPipe],
   entryComponents: [],
   imports: [
     BrowserModule,

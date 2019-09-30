@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
-import { NavController } from '@ionic/angular';
 import { UserService } from '../services/user.service';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -16,19 +16,20 @@ export class LoginPage implements OnInit {
   constructor(
     private authenticationService: AuthenticationService, 
     private userService: UserService, 
-    private navCtrl: NavController,
+    private router: Router,
     public alertController: AlertController
   ) { }
 
   ngOnInit() {
     if(this.authenticationService.getStatus) {
-      this.navCtrl.navigateRoot('/main');
+
+      this.router.navigate(['main']);
     }
   }
   loginWithGoogle() {
     this.authenticationService.loginWithGoogle()
      .then((data) => {
-      this.navCtrl.navigateRoot('/main');
+      this.router.navigate(['main']);
       }).catch((err) => console.log(err));
 
   }
@@ -37,7 +38,7 @@ export class LoginPage implements OnInit {
   }
   loginWithEmail() {
     this.authenticationService.loginWithEmail(this.email, this.password).then( (data) => {
-      this.navCtrl.navigateRoot('/main');
+      this.router.navigate(['main']);
     }
     ).catch((error) => {
      this.alertMessage('ERROR', 'Correo o password incorrecto, intente nuevamente');
