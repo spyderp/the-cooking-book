@@ -8,7 +8,6 @@ open file  environment and add next
 
 ```ts
 export const environment = {
-  production: false,
   firebase: {
     apiKey: "",
     authDomain: "",
