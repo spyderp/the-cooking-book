@@ -25,11 +25,11 @@ export class Recipe {
 
 export class RecipeIngredients {
     uid: any;
-    unit: string = ' ';
+    unit: string;
     quantity: number;
     ingredient: string;
     recipeId: any;
-    constructor(recipeId, data = []) {
+    constructor(recipeId, data: any = []) {
         if (data)  {
             this.uid = data.uid;
             this.unit = data.unit;
@@ -39,6 +39,7 @@ export class RecipeIngredients {
         } else {
             this.uid = uuid.v4();
             this.recipeId = recipeId;
+            this.unit = ' ';
         }
         
     }
@@ -55,7 +56,7 @@ export interface RecipeInterface {
 
 export interface RecipeIngredientsInterface {
     uid: any;
-    unit: string = ' ';
+    unit: string;
     quantity: number;
     ingredient: string;
     recipeId: any;

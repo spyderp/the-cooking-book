@@ -38,10 +38,10 @@ export class Recipe1Page implements OnInit {
     this.recipe = new Recipe(userId);
     if (recipeId) {
       this.namePage = 'Edición';
-      this.recipeService.getById(recipeId).valueChanges().subscribe( data => {
+      this.recipeService.getById(recipeId).valueChanges().subscribe( (data: any) => {
         this.recipe = new Recipe(userId, data);
         this.recipeIngredientService.get(data.uid).valueChanges().subscribe( ingredients => {
-         ingredients.forEach( row => {
+         ingredients.forEach( (row: any) => {
           this.recipeIngredients.push(new RecipeIngredients(null, row));
          });
         });
