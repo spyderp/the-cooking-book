@@ -9,8 +9,11 @@ export const environment = {
     authDomain: "the-cooking-book.firebaseapp.com",
     databaseURL: "https://the-cooking-book.firebaseio.com",
     projectId: "the-cooking-book",
-    storageBucket: "platzinger-basico.appspot.com",
-    //messagingSenderId: "185631691397"
+    storageBucket: "the-cooking-book.appspot.com",
+ },
+ admob: {
+  adModId: "ca-app-pub-2353083446677425~9219536827",
+  intersticialId: "ca-app-pub-2353083446677425/7707144602"
  }
 };
 

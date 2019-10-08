@@ -1,9 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>view</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
+<img [src]="recipe.picture" alt="">
+<h3 class="ion-padding-horizontal">{{recipe.title}}</h3>
+<h5 class="ion-padding-horizontal">Duración: {{recipe.time}}</h5>
+<ion-grid>
+  <ion-row *ngFor="let item of ingredients">
+    <ion-col size="4">{{item.quantity}} {{item.unit}}.</ion-col>
+    <ion-col>{{item.ingredient}}</ion-col>
+  </ion-row>
+</ion-grid>
+<ion-item>
+  {{recipe.procedure}}
+</ion-item>
 
+<ion-fab vertical="top" horizontal="end" slot="fixed">
+  <ion-fab-button [routerLink]="['/main']" color="light">
+    <ion-icon name="return-left" ></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 </ion-content>

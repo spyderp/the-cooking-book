@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-select name="tipo" [(ngModel)]="typeFilter" (ionChange)="changeType()">
+          <ion-select-option  value="Carnes"  selected>Carnes</ion-select-option>
+          <ion-select-option  value="Lacteos">Lacteos</ion-select-option>
+          <ion-select-option  value="Vegetal">Vegetal</ion-select-option>
+          <ion-select-option  value="Fruta">Fruta</ion-select-option>
+          <ion-select-option  value="Condimentos">Condimentos</ion-select-option>
+          <ion-select-option  value="Otros">Otros</ion-select-option>
+        </ion-select>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-list>
+    <ion-item *ngFor="let ingredient of ingredients | async" (click)="selectIngredient(ingredient.description)">
+      <ion-label>{{ingredient.description}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

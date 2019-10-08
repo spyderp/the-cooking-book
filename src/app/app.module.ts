@@ -17,9 +17,13 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
-import { ViewPipe } from './view.pipe';
+import { ModalIngredientPageModule } from './modal-ingredient/modal-ingredient.module';
+import { ModalSearchPageModule } from './modal-search/modal-search.module';
+import { Camera } from '@ionic-native/camera/ngx';
+import { Admob } from '@ionic-native/admob/ngx';
+import { AdMobFree } from '@ionic-native/admob-free/ngx';
 @NgModule({
-  declarations: [AppComponent, ViewPipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -30,11 +34,16 @@ import { ViewPipe } from './view.pipe';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    ModalIngredientPageModule,
+    ModalSearchPageModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
+    Admob,
+    AdMobFree,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

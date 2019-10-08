@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Agregar un ingrediente</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">X</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+      <p>
+          En caso de no exisitir el ingrediente, te ofrecemos agregarlo a nuestra lista. Asegurate que no exista previamente. 
+          Estamos constantemente revisando este apartado para eliminar duplicados. Y sigue apoyando a la comunidad, "Gracias".
+        </p>
+  </ion-item>
+  <br><br>
+<form #iForm="ngForm" (ngSubmit)="iForm.form.valid && onSubmit()">
+  <ion-item  >
+    <ion-input placeholder="nombre del ingrediente..." type="text" name="description" [(ngModel)]="ingredient.description" required></ion-input>
+  </ion-item>
+    <ion-select placeholder="Unid." name="tipo" required [(ngModel)]="ingredient.type"  required>
+      <ion-select-option  value="Carnes">Carnes</ion-select-option>
+      <ion-select-option  value="Lacteos">Lacteos</ion-select-option>
+      <ion-select-option  value="Vegetal">Vegetal</ion-select-option>
+      <ion-select-option  value="Fruta">Fruta</ion-select-option>
+      <ion-select-option  value="Condimentos">Condimentos</ion-select-option>
+      <ion-select-option  value="Otros">Otros</ion-select-option>
+    </ion-select>
+
+    <br><br>
+  <ion-button type="submit" expand="block" color="success" [disabled]="!iForm.form.valid">Guardar</ion-button>
+</form>
+</ion-content>

@@ -8,7 +8,7 @@ export class IngredientService extends Rest {
   constructor(angularFireDatabase: AngularFireDatabase) {
     super('ingredients', angularFireDatabase);
   }
-  delete(uid) {
-
+  get(type = 'Carnes') {
+    return this.db.list('/' + this.modelName, ref => ref.orderByChild('type').equalTo(type));
   }
 }

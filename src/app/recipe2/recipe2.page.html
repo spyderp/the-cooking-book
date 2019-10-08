@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>recipe2</ion-title>
+    <ion-title>Creando una Nueva Receta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/main']"><ion-icon name="close" ></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <form #rForm="ngForm" >
+      <ion-item>
+      <ion-label position="floating">Procedimiento de la receta</ion-label>
+        <ion-textarea name="procedure" required  autoGrow="true" [(ngModel)]="procedure"> </ion-textarea>
+      </ion-item>
+     </form> 
 </ion-content>
+<ion-footer>
+    <div style="display: inline-block; width: 33%">
+        <ion-button expand="full" color="secondary" (click)="submit('prev')" > Anterior</ion-button>
+      </div>
+    <div style="display: inline-block; width: 33%">
+      <ion-button expand="full" color="success" (click)="submit()" > Guardar </ion-button>
+    </div>
+    <div style="display: inline-block; width: 33%">
+      <ion-button expand="full" color="secondary" (click)="submit('next')" > Siguiente</ion-button>
+    </div>
+</ion-footer>

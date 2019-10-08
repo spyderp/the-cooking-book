@@ -95,16 +95,13 @@ ion-button {
   --border-color: #3771c8;
   --border-style: solid;
   --border-width: 2px;
-  --color: #333333;
-  .primary{
+  --color: #333333 !important;
+  .ion-color-primary{
     @extend ion-button;
     --border-color: #3771c8;
   }
-  .secondary{
+  .ion-color-secondary{
     --border-color: #666666;
-  }
-  .succcess{
-    --border-color: #5aa02c;
   }
 }
 
@@ -140,6 +137,7 @@ ion-footer{
   }
   ion-button{
     text-transform: none;
+    --border-radius: 10px;
   }
 }
 .ios{

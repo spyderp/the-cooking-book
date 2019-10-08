@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Creando una Nueva Receta</ion-title>
+    <ion-title>{{namePage}}</ion-title>
     <ion-buttons slot="end">
         <ion-button [routerLink]="['/main']"><ion-icon name="close" ></ion-icon></ion-button>
       </ion-buttons>
@@ -8,13 +8,58 @@
 </ion-header>
 
 <ion-content>
+  <form #rForm="ngForm" (ngSubmit)="rForm.form.valid && save()">
+    <ion-item>
+      <ion-input placeholder="Nombre de la receta..." type="text" name="title" required [(ngModel)]="recipe.title"   ></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input placeholder="Duraccion/tiempo" type="text" name="time" required [(ngModel)]="recipe.time"   ></ion-input>
+      </ion-item>
+    <ion-grid>
+      <ion-row  *ngFor="let row of recipeIngredients; let i = index" class="ingredients row-{{i}}">
+        <ion-col size="2">
+          <ion-item>
+            <ion-input name="cantidad[{{i}}]" type="text" placeholder="Cant."  [(ngModel)]="recipeIngredients[i].quantity"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="4">  
+          <ion-select placeholder="Unid." name="unidad[{{i}}]" required [(ngModel)]="recipeIngredients[i].unit" >
+            <ion-select-option value=" ">unidad</ion-select-option>
+            <ion-select-option *ngFor="let item of units | async" value="{{item.uid}}">{{item.description}}</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col size="5">
+         <ion-item>
+           <ion-input placeholder="Ingrediente..." type="text" name="ingredient[{{i}}]" required [(ngModel)]="recipeIngredients[i].ingredient" (ionFocus)="searchModal(i)"></ion-input>
+         </ion-item>
+        </ion-col>
+        <ion-col size="1" class="close">
+            <ion-icon name="close" color="danger" (click)="removeLine(i)"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="success" (click)="newLine()">
+            <ion-icon name="add" color="success"></ion-icon>
+            Nueva linea
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="addIngredient()" >
+            <ion-icon name="add" color="primary"></ion-icon>
+            Agregar Ingrediente
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 
 </ion-content>
 <ion-footer>
 <div style="display: inline-block; width: 50%">
-  <ion-button expand="full" color="success" (click)="save()" > Guardar </ion-button>
+  <ion-button expand="full" color="success" (click)="submit()" [disabled]="!rForm.form.valid"> Guardar </ion-button>
 </div>
 <div style="display: inline-block; width: 50%">
-  <ion-button expand="full" color="secondary" [routerLink]="['/recipe2']" > Siguiente</ion-button>
+  <ion-button expand="full" color="secondary" (click)="submit('next')" [disabled]="!rForm.form.valid"> Siguiente</ion-button>
 </div>
 </ion-footer>

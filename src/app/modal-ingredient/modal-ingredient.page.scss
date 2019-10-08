@@ -1,0 +1,22 @@
+ion-content, ion-item{
+  --background: #fff;
+}
+
+ion-toolbar{
+  --background: #fff;
+  font-family: 'Satisfy', cursive ; 
+}
+
+ion-header{
+  ion-toolbar{
+    ion-button{
+      --background: none;
+      --border-style: none;
+      color: #666;
+    }
+  }
+}
+ion-button{
+  --border-style: none;
+  margin: 0 5%
+}

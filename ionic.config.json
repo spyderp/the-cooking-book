@@ -1,5 +1,7 @@
 {
   "name": "the-cooking-book",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

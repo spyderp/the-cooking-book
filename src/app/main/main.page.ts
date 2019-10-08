@@ -3,6 +3,8 @@ import { AuthenticationService } from '../services/authentication.service';
 import { AlertController } from '@ionic/angular';
 import { RecipeService } from '../services/recipe.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { RecipeIngredientsService } from '../services/recipe-ingredients.service';
 
 @Component({
   selector: 'app-main',
@@ -11,59 +13,55 @@ import { Router } from '@angular/router';
 })
 export class MainPage implements OnInit {
 
-  constructor(private alertController: AlertController, private recipeService: RecipeService, private router: Router) { }
+  constructor(
+    private alertController: AlertController, 
+    private recipeService: RecipeService, 
+    private recipeIngredientsService: RecipeIngredientsService,
+    private router: Router) { }
     imgagen: boolean = false;
-    recipes;
+    recipes: Observable<any[]>;
     clearFilter;
-    data = [
-      {
-        uid: 1,
-        title: 'Lasaña de pollo en salsa blanca',
-        time: '50min',
-        picture: [],
-      },
-      {
-        uid: 2,
-        title: 'Ensalada a mi manera',
-        time: '10min',
-        picture: [],
-      },
-      {
-        uid: 3,
-        title: 'Beef a la Mongola',
-        time: '1 hora 1/2 ',
-        picture: [],
-      }
-    ];
+  
   ngOnInit() {
-    //this.recipes = this.recipeService.get();
-    this.recipes = this.data;
+    this.recipes = this.recipeService.get().valueChanges();
     this.clearFilter = this.recipes;
   }
-  delete(item) {
-    this.alertMessage('¿Estas seguro que deseas Borrar esto?', '');
+  delete(uid) {
+    this.alertMessage('¿Estas seguro que deseas Borrar esto?', uid);
+  }
+  edit(uid){
+    this.router.navigate(['/recipe1', uid]);
   }
   filterRecipes(event) {
     const query = event.target.value.toLowerCase();
-    this.recipes = this.recipes.filter(recipe => {
-      return recipe.title.toLowerCase().indexOf(query) > -1;
-    });
+    this.recipes = this.recipeService.get(query).valueChanges();
   }
   filterClear(event) {
-    console.log(event)
-    this.recipes = this.clearFilter;
+    this.recipes = this.recipeService.get().valueChanges();
   }
   viewRecipe(uid) {
     this.router.navigate(['/view', uid]);
   }
-  async alertMessage(title: string, msg: string) {
+  async alertMessage(msg: string, uid) {
     const  alert = await this.alertController.create({
-      header: title,
+      header: '¿Confirmar?',
       message: msg,
-      buttons: [{
-       text: 'Cerrar',
-       cssClass: 'danger'
-      }]
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Sí',
+          handler: () => {
+            this.recipeIngredientsService.delete(uid);
+            this.recipeService.delete(uid);
+          }
+        }
+      ]
     });
 
     await alert.present();

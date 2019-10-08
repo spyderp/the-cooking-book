@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
-import { AlertController } from '@ionic/angular';
+import {  ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -14,21 +14,21 @@ export class LoginPage implements OnInit {
   password: string = null;
   nick: string = null;
   constructor(
-    private authenticationService: AuthenticationService, 
-    private userService: UserService, 
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
     private router: Router,
-    public alertController: AlertController
+    public toastController: ToastController
   ) { }
 
   ngOnInit() {
-    if(this.authenticationService.getStatus) {
-
+    if (this.authenticationService.getStatus()) {
       this.router.navigate(['main']);
     }
   }
   loginWithGoogle() {
     this.authenticationService.loginWithGoogle()
      .then((data) => {
+      localStorage.setItem('userId', data.user.uid);
       this.router.navigate(['main']);
       }).catch((err) => console.log(err));
 
@@ -38,13 +38,14 @@ export class LoginPage implements OnInit {
   }
   loginWithEmail() {
     this.authenticationService.loginWithEmail(this.email, this.password).then( (data) => {
+      localStorage.setItem('userId', data.user.uid);
       this.router.navigate(['main']);
     }
     ).catch((error) => {
-     this.alertMessage('ERROR', 'Correo o password incorrecto, intente nuevamente');
+     this.presentToast('ERROR: Correo o password incorrecto, intente nuevamente', 'danger');
     });
   }
-  register(){
+  register() {
     this.authenticationService.registerWithEmail(this.email, this.password).then(
       (data) => {
         const user  =  {
@@ -54,11 +55,11 @@ export class LoginPage implements OnInit {
         };
         this.userService.createUser(user).then(
           (data2) => {
-            this.alertMessage('Registro Exitoso', 'ya puede acceder');
+            this.presentToast('Registro Exitoso: ya puede acceder');
             this.operation = 'login';
           }
         ).catch((error) => {
-          this.alertMessage('ERROR', 'Ocurrio un error, intente nuevamente');
+          this.presentToast('ERROR: Ocurrio un error, intente nuevamente', 'danger');
           console.log(error);
         });
       }
@@ -67,16 +68,12 @@ export class LoginPage implements OnInit {
       console.log(error);
     });
   }
-  async alertMessage(title: string, msg: string, css: string = 'alertDanger') {
-    const  alert = await this.alertController.create({
-      header: title,
+  async presentToast(msg, c = 'success') {
+    const toast = await this.toastController.create({
       message: msg,
-      buttons: [{
-       text: 'Cerrar',
-       cssClass: 'danger'
-      }]
+      color: c,
+      duration: 2000
     });
-
-    await alert.present();
+    toast.present();
   }
 }

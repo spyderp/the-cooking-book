@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>recipe3</ion-title>
+    <ion-title>Creando una Nueva Receta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/main']"><ion-icon name="close" ></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button (click)="takePicture()" >
+          <ion-icon name="camera"></ion-icon> Tomar una foto
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col class="showPicture">
+            <img [src]="croppedImage ? croppedImage: pictureUrl ? pictureUrl:''" alt="">
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+  
+
+
+
 
 </ion-content>
+<ion-footer>
+  <div style="display: inline-block; width: 50%">
+      <ion-button expand="full" color="secondary" (click)="submit('prev')" > Anterior</ion-button>
+    </div>
+  <div style="display: inline-block; width: 50%">
+    <ion-button expand="full" color="success" (click)="submit()" > Guardar </ion-button>
+  </div>
+ 
+</ion-footer>

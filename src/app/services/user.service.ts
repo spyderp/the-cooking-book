@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { User } from '../interfaces/user';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  friends: User[];
   constructor(private angularFireDatabase: AngularFireDatabase ) {  }
   getUsers() {
     return this.angularFireDatabase.list('/users');
